@@ -1,0 +1,49 @@
+# --------------------
+# OS / Editor junk
+# --------------------
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
+*.log
+
+# --------------------
+# Node / frontend tooling (if added later)
+# --------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# --------------------
+# Build / output directories
+# --------------------
+dist/
+build/
+out/
+
+# --------------------
+# Environment files
+# --------------------
+.env
+.env.*
+!.env.example
+
+# --------------------
+# Temporary files
+# --------------------
+.cache/
+.tmp/
+.temp/
+
+# --------------------
+# Optional: design exports
+# (keep source assets, ignore exports)
+# --------------------
+*.psd
+*.ai
+*.sketch
+*.fig
