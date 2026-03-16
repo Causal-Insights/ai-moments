@@ -8,6 +8,29 @@
     <title>ai-moments.com — Create magical moments they’ll never forget</title>
 
     <link rel="stylesheet" href="styles.css" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="images/ai-moments-logo.png" type="image/png" />
+    <link rel="apple-touch-icon" href="images/ai-moments-logo.png" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://ai-moments.com/" />
+
+    <!-- Theme color -->
+    <meta name="theme-color" content="#7a5cff" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ai-moments.com/" />
+    <meta property="og:title" content="ai-moments.com — Create magical moments they'll never forget" />
+    <meta property="og:description" content="ai-moments.com creates warm, personalized short video experiences that bring imagination and joy to kids and families." />
+    <meta property="og:image" content="https://ai-moments.com/images/ai-moments-logo.png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ai-moments.com — Create magical moments they'll never forget" />
+    <meta name="twitter:description" content="ai-moments.com creates warm, personalized short video experiences that bring imagination and joy to kids and families." />
+    <meta name="twitter:image" content="https://ai-moments.com/images/ai-moments-logo.png" />
   </head>
 
   <body>
@@ -33,6 +56,7 @@
           <a class="nav-link" href="#experiences">Experiences</a>
           <a class="nav-link" href="#how">How it works</a>
           <a class="nav-link" href="#trust">Trust &amp; safety</a>
+          <a class="nav-link" href="about.html">About us</a>
         </nav>
       </div>
     </header>
@@ -92,7 +116,7 @@
                 <span class="pill">👶 Baby Announcements</span>
               </div>
               <p class="hero-card-caption">
-                A cozy collection of moments, ready to explore.
+                A collection of moments, ready to explore.
               </p>
             </div>
           </div>
@@ -107,6 +131,104 @@
             ai-moments.com is a creative studio for magical family moments. Each experience is designed to be simple, safe,
             and kid-friendly—so you can focus on the smiles, the laughter, and the memories.
           </p>
+        </div>
+      </section>
+
+      <!-- COLLAGE -->
+      <section class="section collage-section" aria-labelledby="collage-title">
+        <div class="container" data-reveal>
+          <div class="section-head">
+            <h2 id="collage-title" class="section-title">See the magic</h2>
+            <p class="section-kicker">Real examples from our experiences.</p>
+          </div>
+
+          <div class="collage" role="list" aria-label="Example photos and videos from our experiences">
+            <div class="collage-item" role="listitem">
+              <video
+                class="collage-media"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                aria-label="Tooth Fairy visit experience — example video"
+              >
+                <source src="collage_assets/tooth-fairy-visit-10.mp4" type="video/mp4" />
+              </video>
+              <span class="collage-label" aria-hidden="true">🦷 Tooth Fairy</span>
+            </div>
+
+            <div class="collage-item" role="listitem">
+              <video
+                class="collage-media"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                aria-label="Santa's Visit experience — example video"
+              >
+                <source src="collage_assets/santa_caught_on_cam.mp4" type="video/mp4" />
+              </video>
+              <span class="collage-label" aria-hidden="true">🎄 Santa's Visit</span>
+            </div>
+
+            <div class="collage-item" role="listitem">
+              <img
+                class="collage-media"
+                src="collage_assets/04-selected-video-source.png"
+                alt="Example photo used to personalize an AI Moments experience"
+                loading="lazy"
+                decoding="async"
+              />
+              <span class="collage-label" aria-hidden="true">📸 Tooth Fairy</span>
+            </div>
+
+            <div class="collage-item" role="listitem">
+              <video
+                class="collage-media"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                aria-label="Santa's Visit experience — example video"
+              >
+                <source src="collage_assets/santa_caught_on_cam-3.mp4" type="video/mp4" />
+              </video>
+              <span class="collage-label" aria-hidden="true">🎄 Santa's Visit</span>
+            </div>
+
+            <div class="collage-item" role="listitem">
+              <video
+                class="collage-media"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                aria-label="Tooth Fairy visit experience — example video"
+              >
+                <source src="collage_assets/tooth-fairy-visit-8.mp4" type="video/mp4" />
+              </video>
+              <span class="collage-label" aria-hidden="true">🦷 Tooth Fairy</span>
+            </div>
+
+            <div class="collage-item" role="listitem">
+              <video
+                class="collage-media"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                aria-label="Tooth Fairy visit experience — example video"
+              >
+                <source src="collage_assets/tooth-fairy-visit-11.mp4" type="video/mp4" />
+              </video>
+              <span class="collage-label" aria-hidden="true">🦷 Tooth Fairy</span>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -165,29 +287,13 @@
             <article class="card" role="listitem">
               <h3 class="card-title">👶 Baby Announcements</h3>
               <p class="card-text">Share life’s biggest news in a magical way.</p>
-              <a
-                class="card-link"
-                href="https://example.com/experiences/baby"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Visit Experience <span class="external" aria-hidden="true">↗</span>
-                <span class="sr-only">(opens in a new tab)</span>
-              </a>
+              <span class="card-link card-link--soon" aria-label="Baby Announcements coming soon">Coming soon</span>
             </article>
 
             <article class="card" role="listitem">
               <h3 class="card-title">🎉 Birthday Surprises</h3>
               <p class="card-text">Turn birthdays into unforgettable moments.</p>
-              <a
-                class="card-link"
-                href="https://example.com/experiences/birthday"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Visit Experience <span class="external" aria-hidden="true">↗</span>
-                <span class="sr-only">(opens in a new tab)</span>
-              </a>
+              <span class="card-link card-link--soon" aria-label="Birthday Surprises coming soon">Coming soon</span>
             </article>
           </div>
         </div>
@@ -203,23 +309,31 @@
               <div class="step-number" aria-hidden="true">1</div>
               <div class="step-body">
                 <h3 class="step-title">Choose a magical experience</h3>
-                <p class="step-text">Pick a moment your family will love—holiday magic, sweet surprises, and more.</p>
+                <p class="step-text">Pick a moment your family will love — from holiday surprises to unforgettable personalized visits.</p>
               </div>
             </div>
 
             <div class="step" role="listitem">
               <div class="step-number" aria-hidden="true">2</div>
               <div class="step-body">
-                <h3 class="step-title">Personalize it with a photo or message</h3>
-                <p class="step-text">Add a photo that makes it feel real—your Christmas tree for Santa, your home or yard for the Easter Bunny, or your child’s bedroom for the Tooth Fairy’s special visit.</p>
+                <h3 class="step-title">Upload a photo and make it your own</h3>
+                <p class="step-text">Add a photo and customize the details so the magic feels truly real.</p>
               </div>
             </div>
 
             <div class="step" role="listitem">
               <div class="step-number" aria-hidden="true">3</div>
               <div class="step-body">
-                <h3 class="step-title">Receive a short magical video</h3>
-                <p class="step-text">A delightful reveal that’s easy to share privately with your family.</p>
+                <h3 class="step-title">Watch the magic come to life</h3>
+                <p class="step-text">In real time, our AI transforms your image into a beautifully crafted, magical experience.</p>
+              </div>
+            </div>
+
+            <div class="step" role="listitem">
+              <div class="step-number" aria-hidden="true">4</div>
+              <div class="step-body">
+                <h3 class="step-title">Relive and share the moment</h3>
+                <p class="step-text">Download your video and enjoy the smiles, laughter, and memories it creates.</p>
               </div>
             </div>
           </div>
@@ -238,15 +352,15 @@
           <div class="trust-grid">
             <div class="trust-item">
               <h3 class="trust-title">Designed for families</h3>
-              <p class="trust-text">Warm, wholesome experiences made for kids—and the grownups who love them.</p>
+              <p class="trust-text">Warm, wholesome experiences designed to inspire wonder in kids.</p>
             </div>
             <div class="trust-item">
               <h3 class="trust-title">Respectful of privacy</h3>
-              <p class="trust-text">Your family moments are personal. We keep the experience simple and thoughtful.</p>
+              <p class="trust-text">Your family moments are personal. Your photos are processed, but never stored on ours (or our partners) servers.   </p>
             </div>
             <div class="trust-item">
               <h3 class="trust-title">No public sharing required</h3>
-              <p class="trust-text">Enjoy your video privately—share only if and when you choose.</p>
+              <p class="trust-text">Enjoy your video privately, share only if and when you choose.</p>
             </div>
             <div class="trust-item">
               <h3 class="trust-title">Created with care</h3>
@@ -282,9 +396,10 @@
         </div>
 
         <nav class="footer-links" aria-label="Footer">
-          <a class="footer-link" href="https://example.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy <span class="sr-only">(opens in a new tab)</span></a>
-          <a class="footer-link" href="https://example.com/terms" target="_blank" rel="noopener noreferrer">Terms of Service <span class="sr-only">(opens in a new tab)</span></a>
-          <a class="footer-link" href="mailto:hello@ai-moments.com">Contact</a>
+          <a class="footer-link" href="about.html">About us</a>
+          <a class="footer-link" href="/privacy.html">Privacy Policy</a>
+          <a class="footer-link" href="/terms.html">Terms of Service</a>
+          <a class="footer-link" href="mailto:orders@ai-moments.com">Contact</a>
         </nav>
       </div>
     </footer>
