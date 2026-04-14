@@ -3,49 +3,84 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="ai-moments.com creates warm, personalized short video experiences that bring imagination and joy to kids and families." />
+    <meta
+      name="description"
+      content="Create personalized Santa, Easter Bunny, and Tooth Fairy videos for kids and families. AI Moments delivers short, family-friendly AI video experiences made with care."
+    />
+    <meta name="robots" content="index,follow" />
 
-    <title>ai-moments.com — Create magical moments they’ll never forget</title>
+    <title>Personalized AI Video Experiences for Kids | AI Moments</title>
 
     <link rel="stylesheet" href="styles.css" />
 
-    <!-- Favicon -->
     <link rel="icon" href="images/ai-moments-logo.png" type="image/png" />
     <link rel="apple-touch-icon" href="images/ai-moments-logo.png" />
-
-    <!-- Canonical -->
     <link rel="canonical" href="https://ai-moments.com/" />
 
-    <!-- Theme color -->
     <meta name="theme-color" content="#7a5cff" />
 
-    <!-- Open Graph -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="AI Moments" />
     <meta property="og:url" content="https://ai-moments.com/" />
-    <meta property="og:title" content="ai-moments.com — Create magical moments they'll never forget" />
-    <meta property="og:description" content="ai-moments.com creates warm, personalized short video experiences that bring imagination and joy to kids and families." />
-    <meta property="og:image" content="https://ai-moments.com/images/ai-moments-logo.png" />
+    <meta property="og:title" content="Personalized AI Video Experiences for Kids | AI Moments" />
+    <meta
+      property="og:description"
+      content="Explore personalized Santa, Easter Bunny, and Tooth Fairy videos for kids and families."
+    />
+    <meta property="og:image" content="https://ai-moments.com/images/home-preview.jpg" />
+    <meta property="og:image:alt" content="Preview collage for AI Moments family video experiences." />
 
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="ai-moments.com — Create magical moments they'll never forget" />
-    <meta name="twitter:description" content="ai-moments.com creates warm, personalized short video experiences that bring imagination and joy to kids and families." />
-    <meta name="twitter:image" content="https://ai-moments.com/images/ai-moments-logo.png" />
+    <meta name="twitter:title" content="Personalized AI Video Experiences for Kids | AI Moments" />
+    <meta
+      name="twitter:description"
+      content="Explore personalized Santa, Easter Bunny, and Tooth Fairy videos for kids and families."
+    />
+    <meta name="twitter:image" content="https://ai-moments.com/images/home-preview.jpg" />
+    <meta name="twitter:image:alt" content="Preview collage for AI Moments family video experiences." />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://ai-moments.com/#organization",
+            "name": "AI Moments",
+            "url": "https://ai-moments.com/",
+            "description": "AI Moments creates personalized AI video experiences for kids and families.",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://ai-moments.com/images/ai-moments-logo-web.png"
+            }
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://ai-moments.com/#website",
+            "url": "https://ai-moments.com/",
+            "name": "AI Moments",
+            "description": "Personalized AI video experiences for kids and families.",
+            "publisher": {
+              "@id": "https://ai-moments.com/#organization"
+            }
+          }
+        ]
+      }
+    </script>
   </head>
 
   <body>
-    <!-- Skip link for keyboard + screen reader users -->
     <a class="skip-link" href="#main">Skip to content</a>
 
     <header class="site-header" role="banner">
       <div class="container header-inner">
-        <a class="brand" href="#top" aria-label="ai-moments.com home">
+        <a class="brand" href="/" aria-label="AI Moments home">
           <img
             class="brand-logo"
-            src="images/ai-moments-logo.png"
-            alt="ai-moments.com"
-            width="180"
-            height="44"
+            src="images/ai-moments-logo-web.png"
+            alt="AI Moments"
+            width="400"
+            height="400"
             loading="eager"
             decoding="async"
           />
@@ -56,93 +91,116 @@
           <a class="nav-link" href="#experiences">Experiences</a>
           <a class="nav-link" href="#how">How it works</a>
           <a class="nav-link" href="#trust">Trust &amp; safety</a>
-          <a class="nav-link" href="about.html">About us</a>
+          <a class="nav-link" href="/about.html">About us</a>
         </nav>
       </div>
     </header>
 
     <main id="main" class="main" role="main">
-      <!--
-        HERO
-        - Warm, brand-first intro
-        - Uses provided logo prominently
-        - Minimal motion (optional soft fades)
-      -->
-      <section id="top" class="hero" aria-label="Intro">
+      <section id="top" class="hero" aria-labelledby="hero-title">
         <div class="container hero-inner">
           <div class="hero-content" data-reveal>
             <div class="hero-headline">
               <div class="hero-brand hero-brand-inline">
                 <img
                   class="hero-logo hero-logo-inline"
-                  src="images/ai-moments-logo.png"
-                  alt="ai-moments.com"
-                  width="360"
-                  height="86"
+                  src="images/ai-moments-logo-web.png"
+                  alt="AI Moments"
+                  width="400"
+                  height="400"
                   loading="eager"
                   decoding="async"
                 />
               </div>
 
               <div class="hero-text">
-                <h1 class="hero-title">Create magical moments they’ll never forget.</h1>
+                <h1 id="hero-title" class="hero-title">Personalized AI video experiences for magical family moments.</h1>
                 <p class="hero-subtitle">
-                  We create personalized, short, high-quality video experiences that bring imagination, wonder, and joy to children and families.
+                  Create personalized Santa, Easter Bunny, and Tooth Fairy videos for kids and families. Each experience is short,
+                  family-friendly, and designed to feel joyful, believable, and easy to share.
                 </p>
               </div>
             </div>
 
             <div class="hero-actions" role="group" aria-label="Primary actions">
-              <a class="button button-primary" href="#experiences">Explore Our Experiences</a>
-              <a class="button button-secondary" href="#how">How It Works</a>
+              <a class="button button-primary" href="#experiences">Explore the live experiences</a>
+              <a class="button button-secondary" href="#faq">Read common questions</a>
             </div>
 
             <p class="hero-note">
-              Simple, family-friendly experiences—made with care.
+              Start with a photo, choose a magical moment, and create a keepsake video your family can watch again and again.
             </p>
           </div>
 
-          <div class="hero-panel" aria-hidden="true" data-reveal>
+          <div class="hero-panel" data-reveal>
             <div class="hero-card">
               <div class="hero-card-row">
-                <span class="pill">🎄 Santa’s Visit</span>
-                <span class="pill">🐰 Easter Bunny</span>
+                <a class="pill" href="/personalized-santa-video.html">Santa video</a>
+                <a class="pill" href="/easter-bunny-video.html">Easter Bunny video</a>
               </div>
               <div class="hero-card-row">
-                <span class="pill">🦷 Tooth Fairy</span>
-                <span class="pill">🎉 Birthday Surprises</span>
+                <a class="pill" href="/tooth-fairy-video.html">Tooth Fairy video</a>
+                <span class="pill">Birthday surprises</span>
               </div>
               <div class="hero-card-row">
-                <span class="pill">👶 Baby Announcements</span>
+                <span class="pill">Baby announcements</span>
               </div>
               <p class="hero-card-caption">
-                A collection of moments, ready to explore.
+                Browse the guides, preview the experience, and then continue to the dedicated creation site when you are ready.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- WHAT WE DO -->
       <section id="what" class="section" aria-labelledby="what-title">
         <div class="container" data-reveal>
           <h2 id="what-title" class="section-title">What we do</h2>
           <p class="section-lead">
-            ai-moments.com is a creative studio for magical family moments. Each experience is designed to be simple, safe,
-            and kid-friendly—so you can focus on the smiles, the laughter, and the memories.
+            AI Moments creates personalized AI video experiences for kids and families. Parents can turn a simple photo into a short
+            keepsake video built around magical moments children already love.
           </p>
+          <p class="section-copy">
+            Today, our live experiences focus on personalized Santa videos, Easter Bunny videos, and Tooth Fairy videos. Each
+            landing page on AI Moments explains what the experience looks like, how the flow works, and where to go when you are
+            ready to create the final video.
+          </p>
+          <p class="section-copy">
+            The goal is simple: give families a warm, easy way to create a believable magical moment without editing software,
+            complicated setup, or public posting.
+          </p>
+
+          <div class="detail-grid" role="list" aria-label="Core benefits">
+            <article class="card" role="listitem">
+              <h3 class="card-title">Personalized from your photo</h3>
+              <p class="card-text">
+                Each experience starts with your upload so the finished video feels personal instead of generic.
+              </p>
+            </article>
+            <article class="card" role="listitem">
+              <h3 class="card-title">Built for families</h3>
+              <p class="card-text">
+                The tone stays gentle, wholesome, and age-appropriate across holiday and milestone moments.
+              </p>
+            </article>
+            <article class="card" role="listitem">
+              <h3 class="card-title">Short keepsake videos</h3>
+              <p class="card-text">
+                The result is a simple video families can rewatch, save, and share privately with the people they choose.
+              </p>
+            </article>
+          </div>
         </div>
       </section>
 
-      <!-- COLLAGE -->
       <section class="section collage-section" aria-labelledby="collage-title">
         <div class="container" data-reveal>
           <div class="section-head">
-            <h2 id="collage-title" class="section-title">See the magic</h2>
-            <p class="section-kicker">Real examples from our experiences.</p>
+            <h2 id="collage-title" class="section-title">Preview the magic</h2>
+            <p class="section-kicker">Sample clips from our live experiences.</p>
           </div>
 
-          <div class="collage" role="list" aria-label="Example photos and videos from our experiences">
+          <div class="collage" role="list" aria-label="Sample clips from AI Moments experiences">
             <div class="collage-item" role="listitem">
               <video
                 class="collage-media"
@@ -150,12 +208,15 @@
                 muted
                 loop
                 playsinline
-                preload="metadata"
-                aria-label="Tooth Fairy visit experience — example video"
+                preload="none"
+                poster="images/easter-bunny-preview.jpg"
+                aria-hidden="true"
+                tabindex="-1"
+                data-lazy-video
               >
-                <source src="collage_assets/tooth-fairy-visit-10.mp4" type="video/mp4" />
+                <source data-src="collage_assets/easter_bunny_2.mp4" type="video/mp4" />
               </video>
-              <span class="collage-label" aria-hidden="true">🦷 Tooth Fairy</span>
+              <span class="collage-label">Easter Bunny</span>
             </div>
 
             <div class="collage-item" role="listitem">
@@ -165,23 +226,15 @@
                 muted
                 loop
                 playsinline
-                preload="metadata"
-                aria-label="Santa's Visit experience — example video"
+                preload="none"
+                poster="images/tooth-fairy-preview.jpg"
+                aria-hidden="true"
+                tabindex="-1"
+                data-lazy-video
               >
-                <source src="collage_assets/santa_caught_on_cam.mp4" type="video/mp4" />
+                <source data-src="collage_assets/tooth-fairy-visit-11.mp4" type="video/mp4" />
               </video>
-              <span class="collage-label" aria-hidden="true">🎄 Santa's Visit</span>
-            </div>
-
-            <div class="collage-item" role="listitem">
-              <img
-                class="collage-media"
-                src="collage_assets/04-selected-video-source.png"
-                alt="Example photo used to personalize an AI Moments experience"
-                loading="lazy"
-                decoding="async"
-              />
-              <span class="collage-label" aria-hidden="true">📸 Tooth Fairy</span>
+              <span class="collage-label">Tooth Fairy</span>
             </div>
 
             <div class="collage-item" role="listitem">
@@ -191,12 +244,15 @@
                 muted
                 loop
                 playsinline
-                preload="metadata"
-                aria-label="Santa's Visit experience — example video"
+                preload="none"
+                poster="images/easter-bunny-preview.jpg"
+                aria-hidden="true"
+                tabindex="-1"
+                data-lazy-video
               >
-                <source src="collage_assets/santa_caught_on_cam-3.mp4" type="video/mp4" />
+                <source data-src="collage_assets/easter_bunny_3.mp4" type="video/mp4" />
               </video>
-              <span class="collage-label" aria-hidden="true">🎄 Santa's Visit</span>
+              <span class="collage-label">Easter Bunny</span>
             </div>
 
             <div class="collage-item" role="listitem">
@@ -206,12 +262,15 @@
                 muted
                 loop
                 playsinline
-                preload="metadata"
-                aria-label="Tooth Fairy visit experience — example video"
+                preload="none"
+                poster="images/santa-video-preview.jpg"
+                aria-hidden="true"
+                tabindex="-1"
+                data-lazy-video
               >
-                <source src="collage_assets/tooth-fairy-visit-8.mp4" type="video/mp4" />
+                <source data-src="collage_assets/santa_caught_on_cam.mp4" type="video/mp4" />
               </video>
-              <span class="collage-label" aria-hidden="true">🦷 Tooth Fairy</span>
+              <span class="collage-label">Santa video</span>
             </div>
 
             <div class="collage-item" role="listitem">
@@ -221,85 +280,129 @@
                 muted
                 loop
                 playsinline
-                preload="metadata"
-                aria-label="Tooth Fairy visit experience — example video"
+                preload="none"
+                poster="images/tooth-fairy-preview.jpg"
+                aria-hidden="true"
+                tabindex="-1"
+                data-lazy-video
               >
-                <source src="collage_assets/tooth-fairy-visit-11.mp4" type="video/mp4" />
+                <source data-src="collage_assets/tooth-fairy-visit-10.mp4" type="video/mp4" />
               </video>
-              <span class="collage-label" aria-hidden="true">🦷 Tooth Fairy</span>
+              <span class="collage-label">Tooth Fairy</span>
+            </div>
+
+            <div class="collage-item" role="listitem">
+              <video
+                class="collage-media"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="none"
+                poster="images/tooth-fairy-preview.jpg"
+                aria-hidden="true"
+                tabindex="-1"
+                data-lazy-video
+              >
+                <source data-src="collage_assets/tooth-fairy-visit-8.mp4" type="video/mp4" />
+              </video>
+              <span class="collage-label">Tooth Fairy</span>
+            </div>
+
+            <div class="collage-item" role="listitem">
+              <video
+                class="collage-media"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="none"
+                poster="images/santa-video-preview.jpg"
+                aria-hidden="true"
+                tabindex="-1"
+                data-lazy-video
+              >
+                <source data-src="collage_assets/santa_caught_on_cam-3.mp4" type="video/mp4" />
+              </video>
+              <span class="collage-label">Santa video</span>
+            </div>
+
+            <div class="collage-item" role="listitem">
+              <video
+                class="collage-media"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="none"
+                poster="images/easter-bunny-preview.jpg"
+                aria-hidden="true"
+                tabindex="-1"
+                data-lazy-video
+              >
+                <source data-src="collage_assets/easter_bunny_1.mp4" type="video/mp4" />
+              </video>
+              <span class="collage-label">Easter Bunny</span>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- OUR EXPERIENCES -->
       <section id="experiences" class="section section-tinted" aria-labelledby="experiences-title">
         <div class="container" data-reveal>
           <div class="section-head">
-            <h2 id="experiences-title" class="section-title">Our experiences</h2>
-            <p class="section-kicker">Each experience has its own dedicated site.</p>
+            <h2 id="experiences-title" class="section-title">Explore our live experiences</h2>
+            <p class="section-kicker">Start here, preview the details, then continue to the dedicated site.</p>
           </div>
 
           <div class="grid" role="list">
-            <!-- Note: External links open in a new tab and are clearly labeled. -->
             <article class="card" role="listitem">
-              <h3 class="card-title">🎄 Santa’s Visit</h3>
-              <p class="card-text">A personalized video of Santa placing presents under your tree.</p>
-              <a
-                class="card-link"
-                href="https://santa-video.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Visit Experience <span class="external" aria-hidden="true">↗</span>
-                <span class="sr-only">(opens in a new tab)</span>
-              </a>
+              <h3 class="card-title">Personalized Santa video</h3>
+              <p class="card-text">
+                Show Santa by the tree and create a Christmas keepsake that feels magical for kids on Christmas Eve or Christmas
+                morning.
+              </p>
+              <p class="card-note">Includes a preview clip, how-it-works overview, and trust details before you visit santa-video.com.</p>
+              <a class="card-link" href="/personalized-santa-video.html">Learn about personalized Santa videos</a>
             </article>
 
             <article class="card" role="listitem">
-              <h3 class="card-title">🐰 Easter Bunny</h3>
-              <p class="card-text">Bring Easter morning magic to life.</p>
-              <a
-                class="card-link"
-                href="https://easterbunny-video.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Visit Experience <span class="external" aria-hidden="true">↗</span>
-                <span class="sr-only">(opens in a new tab)</span>
-              </a>
+              <h3 class="card-title">Personalized Easter Bunny video</h3>
+              <p class="card-text">
+                Bring Easter morning to life with a family-friendly video experience built for spring surprises and holiday memories.
+              </p>
+              <p class="card-note">
+                Includes a preview clip, use cases, and next steps before you continue to easterbunny-video.com.
+              </p>
+              <a class="card-link" href="/easter-bunny-video.html">Learn about Easter Bunny videos</a>
             </article>
 
             <article class="card" role="listitem">
-              <h3 class="card-title">🦷 Tooth Fairy</h3>
-              <p class="card-text">A nighttime surprise they’ll always remember.</p>
-              <a
-                class="card-link"
-                href="https://toothfairy-video.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Visit Experience <span class="external" aria-hidden="true">↗</span>
-                <span class="sr-only">(opens in a new tab)</span>
-              </a>
+              <h3 class="card-title">Personalized Tooth Fairy video</h3>
+              <p class="card-text">
+                Turn a lost tooth into a keepsake moment with a personalized Tooth Fairy video families can save and replay.
+              </p>
+              <p class="card-note">
+                Includes a preview clip, family-focused guidance, and privacy notes before you continue to toothfairy-video.com.
+              </p>
+              <a class="card-link" href="/tooth-fairy-video.html">Learn about Tooth Fairy videos</a>
             </article>
 
             <article class="card" role="listitem">
-              <h3 class="card-title">👶 Baby Announcements</h3>
-              <p class="card-text">Share life’s biggest news in a magical way.</p>
-              <span class="card-link card-link--soon" aria-label="Baby Announcements coming soon">Coming soon</span>
+              <h3 class="card-title">Baby announcements</h3>
+              <p class="card-text">Share life's biggest news in a magical way.</p>
+              <span class="card-link card-link--soon" aria-label="Baby announcements coming soon">Coming soon</span>
             </article>
 
             <article class="card" role="listitem">
-              <h3 class="card-title">🎉 Birthday Surprises</h3>
-              <p class="card-text">Turn birthdays into unforgettable moments.</p>
-              <span class="card-link card-link--soon" aria-label="Birthday Surprises coming soon">Coming soon</span>
+              <h3 class="card-title">Birthday surprises</h3>
+              <p class="card-text">Turn birthdays into keepsake moments with a little extra wonder.</p>
+              <span class="card-link card-link--soon" aria-label="Birthday surprises coming soon">Coming soon</span>
             </article>
           </div>
         </div>
       </section>
 
-      <!-- HOW IT WORKS -->
       <section id="how" class="section" aria-labelledby="how-title">
         <div class="container" data-reveal>
           <h2 id="how-title" class="section-title">How it works</h2>
@@ -308,74 +411,127 @@
             <div class="step" role="listitem">
               <div class="step-number" aria-hidden="true">1</div>
               <div class="step-body">
-                <h3 class="step-title">Choose a magical experience</h3>
-                <p class="step-text">Pick a moment your family will love — from holiday surprises to unforgettable personalized visits.</p>
+                <h3 class="step-title">Choose a magical moment</h3>
+                <p class="step-text">Pick the Santa, Easter Bunny, or Tooth Fairy experience that fits your family's moment.</p>
               </div>
             </div>
 
             <div class="step" role="listitem">
               <div class="step-number" aria-hidden="true">2</div>
               <div class="step-body">
-                <h3 class="step-title">Upload a photo and make it your own</h3>
-                <p class="step-text">Add a photo and customize the details so the magic feels truly real.</p>
+                <h3 class="step-title">Upload a photo and personalize it</h3>
+                <p class="step-text">Add the photo you want to use so the finished video feels specific to your child or family.</p>
               </div>
             </div>
 
             <div class="step" role="listitem">
               <div class="step-number" aria-hidden="true">3</div>
               <div class="step-body">
-                <h3 class="step-title">Watch the magic come to life</h3>
-                <p class="step-text">In real time, our AI transforms your image into a beautifully crafted, magical experience.</p>
+                <h3 class="step-title">Generate the video</h3>
+                <p class="step-text">Our workflow transforms your upload into a short AI video experience designed to feel warm and real.</p>
               </div>
             </div>
 
             <div class="step" role="listitem">
               <div class="step-number" aria-hidden="true">4</div>
               <div class="step-body">
-                <h3 class="step-title">Relive and share the moment</h3>
-                <p class="step-text">Download your video and enjoy the smiles, laughter, and memories it creates.</p>
+                <h3 class="step-title">Download and relive the moment</h3>
+                <p class="step-text">Save the video, replay the reaction, and share it privately with the people you choose.</p>
               </div>
             </div>
           </div>
 
           <p class="reassurance">
-            It’s designed to be easy and safe—so you can create the moment and enjoy the reaction.
+            Every live experience is designed to be simple enough for busy parents and magical enough to make the final reveal feel
+            special.
           </p>
         </div>
       </section>
 
-      <!-- TRUST & SAFETY -->
       <section id="trust" class="section section-tinted" aria-labelledby="trust-title">
         <div class="container" data-reveal>
           <h2 id="trust-title" class="section-title">Trust &amp; safety</h2>
+          <p class="section-lead">
+            We build these experiences for real families, so the trust story has to be clear. The product is meant to feel easy,
+            private, and age-appropriate from start to finish.
+          </p>
 
           <div class="trust-grid">
             <div class="trust-item">
-              <h3 class="trust-title">Designed for families</h3>
-              <p class="trust-text">Warm, wholesome experiences designed to inspire wonder in kids.</p>
+              <h3 class="trust-title">Family-friendly design</h3>
+              <p class="trust-text">The overall tone stays warm, gentle, and focused on joyful reactions instead of shock or confusion.</p>
             </div>
             <div class="trust-item">
-              <h3 class="trust-title">Respectful of privacy</h3>
-              <p class="trust-text">Your family moments are personal. Your photos are processed, but never stored on ours (or our partners) servers.   </p>
+              <h3 class="trust-title">No account required</h3>
+              <p class="trust-text">Families do not need to create an account to use the live experiences on the linked creation sites.</p>
             </div>
             <div class="trust-item">
-              <h3 class="trust-title">No public sharing required</h3>
-              <p class="trust-text">Enjoy your video privately, share only if and when you choose.</p>
+              <h3 class="trust-title">Photo handling is limited</h3>
+              <p class="trust-text">
+                Uploaded photos are used to generate the experience in real time and are not stored after processing.
+              </p>
             </div>
             <div class="trust-item">
-              <h3 class="trust-title">Created with care</h3>
-              <p class="trust-text">Built to feel safe, gentle, and joyful from start to finish.</p>
+              <h3 class="trust-title">Videos are kept temporarily</h3>
+              <p class="trust-text">
+                Final generated videos are retained for up to 60 days so families can access their order, then they are deleted.
+              </p>
             </div>
+          </div>
+
+          <p class="section-copy">
+            If you want the full legal details, the <a class="inline-link" href="/privacy.html">Privacy Policy</a> and
+            <a class="inline-link" href="/terms.html">Terms of Service</a> explain the current policy in plain language.
+          </p>
+        </div>
+      </section>
+
+      <section id="faq" class="section" aria-labelledby="faq-title">
+        <div class="container" data-reveal>
+          <div class="section-head">
+            <h2 id="faq-title" class="section-title">Frequently asked questions</h2>
+            <p class="section-kicker">Quick answers before you choose an experience.</p>
+          </div>
+
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3 class="faq-question">What kinds of personalized videos can I create right now?</h3>
+              <p class="faq-answer">
+                AI Moments currently features live personalized Santa, Easter Bunny, and Tooth Fairy video experiences, each with its
+                own dedicated creation site.
+              </p>
+            </article>
+            <article class="faq-item">
+              <h3 class="faq-question">Do I need an account to use these experiences?</h3>
+              <p class="faq-answer">
+                No. Our current live experiences do not require account creation in order to start the flow and generate a video.
+              </p>
+            </article>
+            <article class="faq-item">
+              <h3 class="faq-question">What happens to the photo I upload?</h3>
+              <p class="faq-answer">
+                The uploaded photo is used in real time to generate the video and is not stored after processing.
+              </p>
+            </article>
+            <article class="faq-item">
+              <h3 class="faq-question">How long is the finished video available?</h3>
+              <p class="faq-answer">
+                The final generated video is retained for up to 60 days so families can access it, after which it is permanently
+                deleted.
+              </p>
+            </article>
           </div>
         </div>
       </section>
 
-      <!-- CLOSING CTA -->
       <section class="section closing" aria-labelledby="closing-title">
         <div class="container closing-inner" data-reveal>
-          <h2 id="closing-title" class="closing-title">Seeing is believing.</h2>
-          <p class="closing-text">Explore a moment and imagine the smile that comes next.</p>
-          <a class="button button-primary" href="#experiences">Explore Our Experiences</a>
+          <h2 id="closing-title" class="closing-title">Choose the moment that fits your family.</h2>
+          <p class="closing-text">
+            Start with Santa, Easter Bunny, or Tooth Fairy and compare the details before you continue to the dedicated creation
+            site.
+          </p>
+          <a class="button button-primary" href="#experiences">Compare live experiences</a>
         </div>
       </section>
     </main>
@@ -385,10 +541,10 @@
         <div class="footer-brand">
           <img
             class="footer-logo"
-            src="images/ai-moments-logo.png"
-            alt="ai-moments.com"
-            width="160"
-            height="39"
+            src="images/ai-moments-logo-web.png"
+            alt="AI Moments"
+            width="400"
+            height="400"
             loading="lazy"
             decoding="async"
           />
@@ -396,7 +552,10 @@
         </div>
 
         <nav class="footer-links" aria-label="Footer">
-          <a class="footer-link" href="about.html">About us</a>
+          <a class="footer-link" href="/personalized-santa-video.html">Santa video</a>
+          <a class="footer-link" href="/easter-bunny-video.html">Easter Bunny</a>
+          <a class="footer-link" href="/tooth-fairy-video.html">Tooth Fairy</a>
+          <a class="footer-link" href="/about.html">About us</a>
           <a class="footer-link" href="/privacy.html">Privacy Policy</a>
           <a class="footer-link" href="/terms.html">Terms of Service</a>
           <a class="footer-link" href="mailto:orders@ai-moments.com">Contact</a>
