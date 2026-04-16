@@ -1,0 +1,74 @@
+---
+import PageHero from "../../components/PageHero.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { siteConfig } from "../../config/site.js";
+---
+
+<BaseLayout
+  title="Privacy"
+  description="Privacy policy for MagicLens, including the current handling of uploads and final generated videos for the live guided experiences."
+  path="/privacy/"
+>
+  <PageHero
+    eyebrow="Legal"
+    title="Privacy Policy"
+    lead="Effective date: March 13, 2026. This policy applies to the MagicLens website at ai-moments.com and explains the current operational truth behind the live guided experiences."
+  />
+
+  <section class="section">
+    <div class="container legal-prose">
+      <article class="legal-card" data-reveal>
+        <h2>Our commitment to privacy</h2>
+        <p>
+          MagicLens is operated by {siteConfig.legalOperatorName}, a Canadian company. We aim to explain the current experience
+          flows in plain language so visitors understand what happens to uploads, whether an account is required, and how long final
+          generated videos remain available.
+        </p>
+      </article>
+
+      <article class="legal-card" data-reveal>
+        <h2>Information we do not retain</h2>
+        <p>
+          The live guided experiences begin from an uploaded source image. Under the current experience model, uploaded source photos
+          are used during generation and are not retained after processing.
+        </p>
+        <p>
+          MagicLens does not require account creation for the live guided experiences presented on this site today, so visitors are
+          not asked to create a profile in order to start those flows.
+        </p>
+      </article>
+
+      <article class="legal-card" data-reveal>
+        <h2>Information we do retain</h2>
+        <p>
+          Final generated videos for the live guided experiences remain available for up to 60 days so families can access the
+          delivered result. After that retention period, they are permanently deleted.
+        </p>
+      </article>
+
+      <article class="legal-card" data-reveal>
+        <h2>Third-party experience domains</h2>
+        <p>
+          The current live guided creation flows continue on separate experience domains, including santa-video.com,
+          easterbunny-video.com, and toothfairy-video.com. MagicLens provides the shared discovery, positioning, and information
+          layer for those experiences.
+        </p>
+      </article>
+
+      <article class="legal-card" data-reveal>
+        <h2>Children’s privacy</h2>
+        <p>
+          The live guided experiences are intended for family use. Parents and guardians should supervise children’s interaction with
+          the experiences and any resulting content.
+        </p>
+      </article>
+
+      <article class="legal-card" data-reveal>
+        <h2>Contact</h2>
+        <p>
+          Questions about this policy can be sent to <a href={`mailto:${siteConfig.supportEmail}`}>{siteConfig.supportEmail}</a>.
+        </p>
+      </article>
+    </div>
+  </section>
+</BaseLayout>

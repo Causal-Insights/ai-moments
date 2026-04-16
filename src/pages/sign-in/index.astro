@@ -1,0 +1,58 @@
+---
+import PageHero from "../../components/PageHero.astro";
+import SectionIntro from "../../components/SectionIntro.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Login"
+  description="Understand the current MagicLens login status and what account tools are expected to unlock later."
+  path="/sign-in/"
+>
+  <PageHero
+    eyebrow="Login"
+    title="Login will eventually unlock the deeper studio, but the live workflows do not require it today."
+    lead="This page is now framed like a product support surface. It explains where projects, saved assets, and account-linked creation will live later without implying the dashboard already exists."
+    kicker="The current launch model remains intentionally lightweight: open the studio, choose a workflow, and continue without a required account."
+    actions={[
+      { label: "Browse Workflows", href: "/experiences/", secondary: false },
+      { label: "Read privacy details", href: "/privacy/", secondary: true }
+    ]}
+  />
+
+  <section class="section">
+    <div class="container">
+      <SectionIntro
+        eyebrow="Current status"
+        title="Be explicit about what account features do and do not exist yet."
+        lead="The login page should feel like part of a serious creative platform, but it should still stay truthful about today’s product state."
+      />
+
+      <div class="status-grid">
+        <article class="status-card" data-reveal>
+          <div class="status-card-header">
+            <h3 class="card-title">No account required</h3>
+            <span class="availability-chip">Available today</span>
+          </div>
+          <p class="card-text">The live Santa, Easter Bunny, and Tooth Fairy workflows can be launched without a MagicLens account.</p>
+        </article>
+
+        <article class="status-card" data-reveal>
+          <div class="status-card-header">
+            <h3 class="card-title">Projects</h3>
+            <span class="availability-chip">Coming soon</span>
+          </div>
+          <p class="card-text">Saved projects and in-progress creative work will arrive with the broader studio experience.</p>
+        </article>
+
+        <article class="status-card" data-reveal>
+          <div class="status-card-header">
+            <h3 class="card-title">Uploads library</h3>
+            <span class="availability-chip">Coming soon</span>
+          </div>
+          <p class="card-text">Reusable uploads and saved assets are part of the future account direction, not part of the current live flows.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

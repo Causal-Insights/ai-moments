@@ -1,0 +1,38 @@
+---
+const {
+  eyebrow,
+  title,
+  lead,
+  kicker = null,
+  actions = [],
+  side = null
+} = Astro.props;
+---
+
+<section class="page-hero product-hero">
+  <div class="container page-hero-grid">
+    <div class="page-hero-copy" data-reveal>
+      {eyebrow && <p class="hero-eyebrow">{eyebrow}</p>}
+      <h1 class="page-title">{title}</h1>
+      {lead && <p class="page-lead">{lead}</p>}
+      {kicker && <p class="hero-kicker">{kicker}</p>}
+
+      {actions.length > 0 && (
+        <div class="button-row" role="group" aria-label="Page actions">
+          {actions.map((action) => (
+            <a
+              class:list={["button", action.secondary ? "button-secondary" : "button-primary"]}
+              href={action.href}
+              target={action.external ? "_blank" : undefined}
+              rel={action.external ? "noopener noreferrer" : undefined}
+            >
+              {action.label}
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+
+    {side && <div class="page-hero-side page-hero-panel" data-reveal set:html={side} />}
+  </div>
+</section>

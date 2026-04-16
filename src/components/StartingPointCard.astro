@@ -1,0 +1,13 @@
+---
+const { item } = Astro.props;
+const live = item.status.toLowerCase().includes("live");
+---
+
+<article class="starting-point-card" data-reveal>
+  <div class="starting-point-topline">
+    <p class="card-meta">Starting point</p>
+    <span class:list={["status-badge", live ? "status-live" : "status-soon"]}>{item.status}</span>
+  </div>
+  <h3 class="card-title">{item.title}</h3>
+  <p class="card-text">{item.description}</p>
+</article>

@@ -1,0 +1,140 @@
+---
+import GalleryCard from "../../components/GalleryCard.astro";
+import StudioWorkspaceMock from "../../components/StudioWorkspaceMock.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getExperiences, getGalleryItems } from "../../lib/content.js";
+import { siteConfig } from "../../config/site.js";
+
+const galleryItems = await getGalleryItems();
+const experiences = await getExperiences();
+const experienceMap = Object.fromEntries(experiences.map((entry) => [entry.data.slug, entry.data.publicLabel]));
+const heroExperience = experiences.find((entry) => entry.data.status === "live") ?? experiences[0];
+
+function toToken(value) {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+}
+
+const experienceOptions = ["all", ...new Set(galleryItems.map((item) => toToken(item.data.experienceSlug)))];
+const collectionOptions = ["all", ...new Set(galleryItems.map((item) => toToken(item.data.collection)))];
+const mediaOptions = ["all", ...new Set(galleryItems.map((item) => toToken(item.data.mediaType)))];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "MagicLens Examples",
+  url: `${siteConfig.siteUrl}/gallery/`,
+  description: "Illustrative workflow examples and preview outputs from MagicLens."
+};
+---
+
+<BaseLayout
+  title="Examples"
+  description="Browse illustrative MagicLens examples by workflow, collection, and media type."
+  path="/gallery/"
+  jsonLd={jsonLd}
+>
+  <section class="section hero-home">
+    <div class="container hero-grid hero-grid-product">
+      <div class="hero-copy hero-copy-product" data-reveal>
+        <p class="eyebrow">Examples</p>
+        <h1 class="hero-title">Browse outputs the way a creative platform would show them.</h1>
+        <p class="hero-subtitle">
+          Examples are now presented as dense, filterable workflow output cards instead of a light gallery wall. The result is more
+          product-like, more proof-heavy, and still honest about which assets are illustrative.
+        </p>
+        <div class="button-row">
+          <a class="button button-primary" href="/studio/">Open Studio</a>
+          <a class="button button-secondary" href="/experiences/">See Workflows</a>
+        </div>
+      </div>
+
+      <div class="hero-mock-stage" data-reveal>
+        <StudioWorkspaceMock
+          title="Example Browser"
+          label="Illustrative outputs"
+          media={heroExperience.data.heroMedia}
+          chips={["Examples", heroExperience.data.publicLabel, heroExperience.data.outputType]}
+          controls={["Collection filter", "Workflow filter", "Media filter"]}
+          compact={true}
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" data-filter-root>
+      <div class="section-intro" data-reveal>
+        <p class="section-eyebrow">Filter examples</p>
+        <h2 class="section-title">Sort by workflow, collection, or media type.</h2>
+        <p class="section-lead">
+          The examples page is designed to feel like a real product browser rather than a marketing collage. All output cards stay
+          clearly labeled when they are illustrative.
+        </p>
+      </div>
+
+      <div class="filter-shell" data-reveal>
+        <div class="filter-group">
+          <p class="filter-label">Workflow</p>
+          <div class="filter-row">
+            {experienceOptions.map((option) => (
+              <button
+                class:list={["filter-button", { "is-active": option === "all" }]}
+                type="button"
+                data-filter-button
+                data-filter-name="experience"
+                data-filter-value={option}
+                aria-pressed={option === "all" ? "true" : "false"}
+              >
+                {option === "all" ? "All workflows" : experienceMap[option] ?? option.replace(/-/g, " ")}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <p class="filter-label">Collection</p>
+          <div class="filter-row">
+            {collectionOptions.map((option) => (
+              <button
+                class:list={["filter-button", { "is-active": option === "all" }]}
+                type="button"
+                data-filter-button
+                data-filter-name="collection"
+                data-filter-value={option}
+                aria-pressed={option === "all" ? "true" : "false"}
+              >
+                {option === "all" ? "All collections" : option.replace(/-/g, " ")}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <p class="filter-label">Media type</p>
+          <div class="filter-row">
+            {mediaOptions.map((option) => (
+              <button
+                class:list={["filter-button", { "is-active": option === "all" }]}
+                type="button"
+                data-filter-button
+                data-filter-name="media"
+                data-filter-value={option}
+                aria-pressed={option === "all" ? "true" : "false"}
+              >
+                {option === "all" ? "All media" : option.replace(/-/g, " ")}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-grid">
+        {galleryItems.map((item) => <GalleryCard item={item} experienceName={experienceMap[item.data.experienceSlug]} />)}
+      </div>
+
+      <p class="filter-empty" data-filter-empty hidden>
+        No examples match the current filter combination.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

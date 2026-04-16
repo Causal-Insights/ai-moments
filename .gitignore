@@ -24,6 +24,9 @@ pnpm-debug.log*
 dist/
 build/
 out/
+.astro/
+playwright-report/
+test-results/
 
 # --------------------
 # Environment files

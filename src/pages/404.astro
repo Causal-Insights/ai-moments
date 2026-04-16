@@ -1,0 +1,23 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Page Not Found"
+  description="The page you requested does not exist. Return to MagicLens to browse workflows and examples."
+  noindex={true}
+>
+  <section class="section not-found-shell">
+    <div class="container">
+      <div class="cta-panel not-found-card" data-reveal>
+        <p class="eyebrow">404</p>
+        <h1 class="page-title">That page is out of frame.</h1>
+        <p class="page-lead">Return to MagicLens to browse live workflows, preview examples, or explore the studio direction.</p>
+        <div class="button-row">
+          <a class="button button-primary" href="/">Go home</a>
+          <a class="button button-secondary" href="/experiences/">Browse workflows</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

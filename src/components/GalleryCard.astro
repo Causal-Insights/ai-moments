@@ -1,0 +1,38 @@
+---
+const { item, experienceName } = Astro.props;
+
+function toToken(value) {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+}
+---
+
+<article
+  class="gallery-card"
+  data-filter-item
+  data-experience={toToken(item.data.experienceSlug)}
+  data-collection={toToken(item.data.collection)}
+  data-media={toToken(item.data.mediaType)}
+>
+  <div class="gallery-media">
+    {
+      item.data.mediaType === "video" ? (
+        <video class="gallery-video" autoplay muted loop playsinline preload="metadata" poster={item.data.poster}>
+          <source src={item.data.asset} type="video/mp4" />
+        </video>
+      ) : (
+        <img src={item.data.asset} alt={item.data.alt} loading="lazy" decoding="async" />
+      )
+    }
+    <div class="gallery-overlay">
+      <span class="status-badge status-illustrative">Example</span>
+      {item.data.highlight && <span class="micro-pill">{item.data.highlight}</span>}
+    </div>
+  </div>
+
+  <div class="gallery-body">
+    <p class="gallery-meta">{experienceName} · {item.data.collection}</p>
+    <h3 class="card-title">{item.data.title}</h3>
+    <p class="card-text">{item.data.caption}</p>
+    {item.data.isIllustrative && <p class="helper-note">Illustrative workflow output using current approved media assets.</p>}
+  </div>
+</article>

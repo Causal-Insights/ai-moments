@@ -1,0 +1,47 @@
+---
+import { brandAssets } from "../config/brand.js";
+import { siteConfig } from "../config/site.js";
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand brand-footer" href="/" aria-label={`${siteConfig.brandName} home`}>
+        <span class="footer-brand-symbol" aria-hidden="true">
+          <img src={brandAssets.symbol} alt="" loading="lazy" decoding="async" />
+        </span>
+        <span class="brand-copy">
+          <img class="brand-lockup-image brand-lockup-image-footer" src={brandAssets.lockup} alt="" loading="lazy" decoding="async" />
+          <span class="sr-only">{siteConfig.brandName}</span>
+          <span class="brand-tag">Wonder-first keepsakes for real homes, rooms, and rituals.</span>
+        </span>
+      </a>
+
+      <p class="footer-note">
+        MagicLens is the studio-first surface for the live workflows previously presented as {siteConfig.legacyBrandName}.
+      </p>
+      <p class="footer-copy">© {currentYear} {siteConfig.brandName}. Operated by {siteConfig.legalOperatorName}</p>
+    </div>
+
+    <div class="footer-grid">
+      {
+        siteConfig.footerGroups.map((group) => (
+          <div class="footer-group">
+            <h2 class="footer-title">{group.title}</h2>
+            <ul class="footer-list">
+              {group.links.map((link) => (
+                <li>
+                  <a class="footer-link" href={link.href}>
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</footer>

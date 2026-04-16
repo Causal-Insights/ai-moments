@@ -1,0 +1,39 @@
+---
+const { item, experience } = Astro.props;
+---
+
+<article class="transform-card" data-reveal>
+  <div class="transform-upload">
+    <p class="transform-label">Input canvas</p>
+    <div class="upload-frame studio-panel-card">
+      <div class="upload-icon" aria-hidden="true">+</div>
+      <div>
+        <p class="upload-title">{experience.data.startingPoint}</p>
+        <p class="upload-copy">MagicLens begins with a personal image and routes it into the {experience.data.publicLabel} workflow.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="transform-result">
+    <p class="transform-label">Output monitor</p>
+    <div class="result-frame studio-panel-card">
+      {
+        item.data.mediaType === "video" ? (
+          <video class="result-video" autoplay muted loop playsinline preload="metadata" poster={item.data.poster}>
+            <source src={item.data.asset} type="video/mp4" />
+          </video>
+        ) : (
+          <img src={item.data.asset} alt={item.data.alt} loading="lazy" decoding="async" />
+        )
+      }
+      <div class="result-copy">
+        <h3 class="card-title">{experience.data.title}</h3>
+        <p class="card-text">{item.data.caption}</p>
+        <div class="pill-row">
+          {experience.data.capabilities.slice(0, 2).map((capability) => <span class="micro-pill">{capability}</span>)}
+          {item.data.isIllustrative && <span class="micro-pill">Illustrative example</span>}
+        </div>
+      </div>
+    </div>
+  </div>
+</article>

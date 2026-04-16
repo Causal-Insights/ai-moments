@@ -1,0 +1,69 @@
+---
+import { brandAssets } from "../config/brand.js";
+
+const {
+  title = "MagicLens Studio",
+  label = "Workspace preview",
+  media,
+  chips = [],
+  controls = ["Input", "Style", "Output"],
+  compact = false,
+  brandMarkSrc = brandAssets.symbol
+} = Astro.props;
+---
+
+<div class:list={["workspace-shell", { "workspace-shell-compact": compact }]}>
+  <div class="workspace-topbar">
+    <div class="workspace-dots" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <p class="workspace-title">{title}</p>
+    <span class="workspace-badge">{label}</span>
+  </div>
+
+  <div class="workspace-body">
+    <div class="workspace-sidebar" aria-hidden="true">
+      <span class="workspace-sidebar-item is-active"></span>
+      <span class="workspace-sidebar-item"></span>
+      <span class="workspace-sidebar-item"></span>
+      <span class="workspace-sidebar-item"></span>
+    </div>
+
+    <div class="workspace-canvas">
+      <div class="workspace-canvas-label">Preview</div>
+      <div class="workspace-media">
+        {
+          media.type === "video" ? (
+            <video autoplay muted loop playsinline preload="metadata" poster={media.poster}>
+              <source src={media.src} type="video/mp4" />
+            </video>
+          ) : (
+            <img src={media.src} alt={media.alt} loading="eager" decoding="async" />
+          )
+        }
+        <span class="workspace-brandmark" aria-hidden="true">
+          <img src={brandMarkSrc} alt="" loading="lazy" decoding="async" />
+        </span>
+      </div>
+
+      {chips.length > 0 && (
+        <div class="workspace-chip-row">
+          {chips.map((chip) => <span class="micro-pill">{chip}</span>)}
+        </div>
+      )}
+    </div>
+
+    <div class="workspace-inspector">
+      <p class="workspace-inspector-title">Workflow controls</p>
+      <div class="workspace-control-list">
+        {controls.map((control) => <span class="workspace-control">{control}</span>)}
+      </div>
+      <div class="workspace-meter">
+        <span class="workspace-meter-label">Studio readiness</span>
+        <span class="workspace-meter-bar"></span>
+      </div>
+    </div>
+  </div>
+</div>

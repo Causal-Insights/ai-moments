@@ -1,0 +1,73 @@
+---
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import { siteConfig, canonicalUrl } from "../config/site.js";
+import siteScriptUrl from "../scripts/site.js?url";
+import "../styles/global.css";
+
+const {
+  title = siteConfig.brandName,
+  description = siteConfig.description,
+  path = Astro.url.pathname,
+  image = siteConfig.defaultOgImage,
+  type = "website",
+  noindex = false,
+  jsonLd = null,
+  pageClass = ""
+} = Astro.props;
+
+const pageTitle = title === siteConfig.brandName ? title : `${title} | ${siteConfig.brandName}`;
+const canonical = canonicalUrl(path);
+const socialImage = new URL(image, siteConfig.siteUrl).toString();
+const robots = noindex ? "noindex,nofollow" : "index,follow";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="robots" content={robots} />
+    <meta name="theme-color" content={siteConfig.themeColor} />
+
+    <title>{pageTitle}</title>
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Philosopher:wght@400;700&display=swap"
+    />
+
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content={siteConfig.brandName} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:image:alt" content={`${siteConfig.brandName} preview`} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
+    <meta name="twitter:image:alt" content={`${siteConfig.brandName} preview`} />
+
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+    <slot name="head" />
+  </head>
+
+  <body class={pageClass}>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <SiteHeader pathname={Astro.url.pathname} />
+
+    <main id="main" class="page-shell">
+      <slot />
+    </main>
+
+    <SiteFooter />
+    <script type="module" src={siteScriptUrl}></script>
+  </body>
+</html>

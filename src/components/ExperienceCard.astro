@@ -1,0 +1,67 @@
+---
+import { getExperienceTheme } from "../config/brand.js";
+
+const { experience } = Astro.props;
+
+function toToken(value) {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+}
+
+const mediaSrc = experience.data.previewMedia.poster ?? experience.data.previewMedia.src;
+const statusLabel = experience.data.status === "live" ? "Live now" : "Coming soon";
+const theme = getExperienceTheme(experience.data.slug);
+---
+
+<article
+  class:list={[
+    "experience-card",
+    `experience-card-theme-${theme.key}`,
+    { "experience-card-coming": experience.data.status !== "live" }
+  ]}
+  data-filter-item
+  data-category={toToken(experience.data.category)}
+  data-output={toToken(experience.data.outputType)}
+  data-startingpoint={toToken(experience.data.startingPoint)}
+>
+  <div class="workflow-card-shell">
+    <div class="workflow-card-topline">
+      <div class="workflow-card-meta-row">
+        <span class:list={["status-badge", experience.data.status === "live" ? "status-live" : "status-soon"]}>
+          {statusLabel}
+        </span>
+        <span class="micro-pill">{experience.data.startingPoint}</span>
+      </div>
+      <span class="workflow-card-brandmark-shell" aria-hidden="true">
+        <img class="workflow-card-brandmark" src={theme.icon} alt="" loading="lazy" decoding="async" />
+      </span>
+    </div>
+
+    <div class="workflow-card-stage">
+      <div class="workflow-card-preview">
+        <img src={mediaSrc} alt={experience.data.previewMedia.alt} loading="lazy" decoding="async" />
+      </div>
+      <div class="workflow-card-rail" aria-hidden="true">
+        <span class="rail-dot"></span>
+        <span class="rail-line"></span>
+        <span class="rail-dot"></span>
+      </div>
+      <div class="workflow-card-panel">
+        <p class="card-meta">{experience.data.category} · {experience.data.outputType}</p>
+        <h3 class="card-title">{experience.data.title}</h3>
+        <p class="card-text">{experience.data.cardSummary}</p>
+
+        <div class="pill-row" aria-label={`${experience.data.title} capabilities`}>
+          {experience.data.capabilities.slice(0, 3).map((capability) => <span class="micro-pill">{capability}</span>)}
+        </div>
+
+        {experience.url ? (
+          <a class="text-link" href={experience.url}>
+            Open workflow
+          </a>
+        ) : (
+          <span class="text-link text-link-muted">Studio preview</span>
+        )}
+      </div>
+    </div>
+  </div>
+</article>

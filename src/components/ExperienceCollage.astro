@@ -1,0 +1,81 @@
+---
+const { items = [] } = Astro.props;
+const loops = [0, 1, 2];
+---
+
+<div class="experience-collage" data-reveal data-collage-root>
+  <div class="experience-collage-scroller" data-collage-loop tabindex="0" aria-label="Scrollable MagicLens experience collage">
+    <div class="experience-collage-track">
+      {
+        loops.map((loopIndex) => (
+          <div class="experience-collage-sequence" data-collage-sequence aria-hidden={loopIndex === 1 ? undefined : "true"}>
+            {
+              items.map((item, itemIndex) => {
+                const Tag = item.href ? "a" : "div";
+
+                return (
+                  <Tag
+                    class:list={[
+                      "collage-panel",
+                      "collage-panel-experience",
+                      item.variant ? `collage-panel-${item.variant}` : null
+                    ]}
+                    data-collage-panel
+                    data-collage-index={itemIndex}
+                    href={item.href}
+                    aria-label={loopIndex === 1 && item.href ? `${item.title} experience` : undefined}
+                    tabindex={loopIndex === 1 ? undefined : -1}
+                  >
+                    <div class="collage-media">
+                      {
+                        item.type === "video" ? (
+                          <video
+                            autoplay
+                            muted
+                            loop
+                            playsinline
+                            preload="auto"
+                            poster={item.poster}
+                            data-autoplay-video
+                            data-autoplay-group="collage"
+                          >
+                            <source src={item.src} type="video/mp4" />
+                          </video>
+                        ) : (
+                          <img src={item.src} alt={item.alt} loading="eager" decoding="async" />
+                        )
+                      }
+
+                      {item.watermarkSrc && (
+                        <span class="collage-panel-watermark" aria-hidden="true">
+                          <img src={item.watermarkSrc} alt="" loading="lazy" decoding="async" />
+                        </span>
+                      )}
+                    </div>
+
+                    {item.label && <span class="collage-panel-label">{item.label}</span>}
+
+                    {item.title && (
+                      <div class="collage-panel-copy">
+                        <p class="collage-panel-title">{item.title}</p>
+                      </div>
+                    )}
+                  </Tag>
+                );
+              })
+            }
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="experience-collage-controls" role="group" aria-label="Video collage navigation">
+    <button class="experience-collage-control" type="button" data-collage-prev aria-label="Show previous video">
+      <span aria-hidden="true">&larr;</span>
+    </button>
+    <button class="experience-collage-control" type="button" data-collage-next aria-label="Show next video">
+      <span aria-hidden="true">&rarr;</span>
+    </button>
+  </div>
+</div>

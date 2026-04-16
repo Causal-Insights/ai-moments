@@ -1,0 +1,63 @@
+---
+import PageHero from "../../components/PageHero.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { siteConfig } from "../../config/site.js";
+---
+
+<BaseLayout
+  title="Terms"
+  description="Terms of service for MagicLens and the live guided experiences it presents."
+  path="/terms/"
+>
+  <PageHero
+    eyebrow="Legal"
+    title="Terms of Service"
+    lead="Effective date: March 13, 2026. These terms describe the current MagicLens website and the live guided experiences it routes visitors toward."
+  />
+
+  <section class="section">
+    <div class="container legal-prose">
+      <article class="legal-card" data-reveal>
+        <h2>Acceptance of terms</h2>
+        <p>
+          By accessing or using MagicLens and the live guided experiences it presents, you agree to these Terms of Service. If you
+          do not agree, please do not use the site or the linked experience flows.
+        </p>
+      </article>
+
+      <article class="legal-card" data-reveal>
+        <h2>Current service model</h2>
+        <p>
+          MagicLens is a discovery and positioning layer for image-first guided experiences. You start from a photo, choose an
+          experience, and continue into the current live creation flow for that experience. At launch, those live flows remain on
+          separate domains.
+        </p>
+      </article>
+
+      <article class="legal-card" data-reveal>
+        <h2>Acceptable use</h2>
+        <ul class="check-list">
+          <li>Use the site and live guided experiences only for lawful, family-appropriate, personal purposes.</li>
+          <li>Only upload images you have the right to use.</li>
+          <li>Do not scrape, misuse, or attempt to reverse-engineer the service.</li>
+          <li>Do not use the service to create deceptive, harmful, or illegal content.</li>
+        </ul>
+      </article>
+
+      <article class="legal-card" data-reveal>
+        <h2>Operational expectations</h2>
+        <p>
+          Uploaded source photos for the live guided experiences are used during generation and are not retained after processing.
+          Final generated videos remain available for up to 60 days so families can access the result.
+        </p>
+      </article>
+
+      <article class="legal-card" data-reveal>
+        <h2>Contact</h2>
+        <p>
+          Questions about these terms can be sent to <a href={`mailto:${siteConfig.supportEmail}`}>{siteConfig.supportEmail}</a>.
+        </p>
+      </article>
+    </div>
+  </section>
+</BaseLayout>

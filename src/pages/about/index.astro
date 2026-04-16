@@ -1,0 +1,61 @@
+---
+import PageHero from "../../components/PageHero.astro";
+import SectionIntro from "../../components/SectionIntro.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { siteConfig } from "../../config/site.js";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: siteConfig.brandName,
+  url: `${siteConfig.siteUrl}/about/`,
+  parentOrganization: {
+    "@type": "Organization",
+    name: siteConfig.legalOperatorName
+  },
+  description: "MagicLens is the image-first creative studio brand for guided family keepsake experiences and future studio workflows."
+};
+---
+
+<BaseLayout
+  title="Company"
+  description="Learn why MagicLens reframes the existing guided family workflows as one broader image-first creative studio."
+  path="/about/"
+  jsonLd={jsonLd}
+>
+  <PageHero
+    eyebrow="Company"
+    title="MagicLens turns guided magical workflows into one coherent creative system."
+    lead="The redesign matters because the product model is bigger than a single family landing page. MagicLens now presents workflows, examples, and future studio tooling as one connected product surface."
+    kicker="The goal is not enterprise theater. It is to make the site feel like a real AI creative studio without inventing features or proof that do not exist."
+    actions={[
+      { label: "Browse Workflows", href: "/experiences/", secondary: false },
+      { label: "See Examples", href: "/gallery/", secondary: true }
+    ]}
+  />
+
+  <section class="section">
+    <div class="container">
+      <SectionIntro
+        eyebrow="Principles"
+        title="The product is grounded in clarity, not hype."
+        lead="MagicLens only works if the site feels like a credible creative tool while still remaining honest about the live workflows, external handoff, and roadmap."
+      />
+
+      <div class="feature-grid">
+        <article class="feature-card" data-reveal>
+          <h3 class="card-title">Image-first by design</h3>
+          <p class="card-text">The starting point is always the uploaded image, which keeps MagicLens grounded in something specific and personal.</p>
+        </article>
+        <article class="feature-card" data-reveal>
+          <h3 class="card-title">One shared system</h3>
+          <p class="card-text">Workflows should feel like modules inside one studio, not disconnected pages that happen to share a logo.</p>
+        </article>
+        <article class="feature-card" data-reveal>
+          <h3 class="card-title">Honest roadmap language</h3>
+          <p class="card-text">Future projects, templates, and account tools are visible, but always labeled as planned instead of implied to exist already.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,280 @@
+---
+import ExperienceCard from "../../components/ExperienceCard.astro";
+import StudioWorkspaceMock from "../../components/StudioWorkspaceMock.astro";
+import TransformShowcase from "../../components/TransformShowcase.astro";
+import { getExperienceTheme } from "../../config/brand.js";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getGalleryForExperience, getLiveExperiences } from "../../lib/content.js";
+import { siteConfig } from "../../config/site.js";
+
+export async function getStaticPaths() {
+  const experiences = await getLiveExperiences();
+  return experiences.map((experience) => ({
+    params: { slug: experience.data.slug },
+    props: { experience }
+  }));
+}
+
+const { experience } = Astro.props;
+const galleryItems = (await getGalleryForExperience(experience.data.slug)).slice(0, 2);
+const liveExperiences = await getLiveExperiences();
+const relatedExperiences = liveExperiences.filter((entry) => experience.data.relatedSlugs.includes(entry.data.slug));
+const pagePath = `/experiences/${experience.data.slug}/`;
+const theme = getExperienceTheme(experience.data.slug);
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: `${siteConfig.siteUrl}/`
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Workflows",
+          item: `${siteConfig.siteUrl}/experiences/`
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: experience.data.title,
+          item: `${siteConfig.siteUrl}${pagePath}`
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      name: experience.data.title,
+      serviceType: `${experience.data.outputType} workflow`,
+      provider: {
+        "@type": "Organization",
+        name: siteConfig.brandName,
+        url: siteConfig.siteUrl
+      },
+      audience: {
+        "@type": "Audience",
+        audienceType: "Prosumer creators and small creative teams"
+      },
+      description: experience.data.summary,
+      url: `${siteConfig.siteUrl}${pagePath}`
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title={experience.data.title}
+  description={experience.data.summary}
+  path={pagePath}
+  image={experience.data.previewMedia.poster ?? experience.data.previewMedia.src}
+  jsonLd={breadcrumbJsonLd}
+  pageClass={`experience-detail experience-theme-${theme.key}`}
+>
+  <section class="section hero-home experience-hero">
+    <div class="container hero-grid hero-grid-product">
+      <div class="hero-copy hero-copy-product" data-reveal>
+        <p class="eyebrow">{experience.data.eyebrow}</p>
+        <h1 class="hero-title">{experience.data.title}</h1>
+        <p class="hero-subtitle">{experience.data.summary}</p>
+        <p class="hero-kicker">{experience.data.longDescription}</p>
+
+        <div class="pill-row" aria-label={`${experience.data.title} workflow details`}>
+          <span class="micro-pill">{experience.data.startingPoint}</span>
+          <span class="micro-pill">{experience.data.outputType}</span>
+          <span class="micro-pill">{experience.data.inputType}</span>
+          {experience.data.capabilities.slice(0, 2).map((capability) => <span class="micro-pill">{capability}</span>)}
+        </div>
+
+        <div class="button-row" role="group" aria-label={`${experience.data.title} actions`}>
+          <a class="button button-primary" href={experience.data.ctaHref} target="_blank" rel="noopener noreferrer">
+            {experience.data.ctaLabel}
+          </a>
+          <a class="button button-secondary" href="/gallery/">View Examples</a>
+        </div>
+
+        <p class="hero-note">{experience.data.disclosure}</p>
+      </div>
+
+      <div class="hero-mock-stage experience-stage-shell" data-reveal>
+        <span class="experience-page-symbol" aria-hidden="true">
+          <img src={theme.icon} alt="" loading="lazy" decoding="async" />
+        </span>
+        <StudioWorkspaceMock
+          title={`${experience.data.publicLabel} Workflow`}
+          label="Workflow preview"
+          media={experience.data.heroMedia}
+          chips={[experience.data.publicLabel, ...experience.data.capabilities]}
+          controls={["Scene route", "Look settings", "Output mode"]}
+          brandMarkSrc={theme.icon}
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="detail-grid detail-grid-four">
+        <article class="detail-card detail-card-interface" data-reveal>
+          <p class="card-meta">Starting point</p>
+          <h2 class="card-title card-title-sm">{experience.data.startingPoint}</h2>
+          <p class="card-text">This workflow is designed to begin from a real uploaded image rather than an empty studio canvas.</p>
+        </article>
+
+        <article class="detail-card detail-card-interface" data-reveal>
+          <p class="card-meta">Input model</p>
+          <h2 class="card-title card-title-sm">{experience.data.inputType}</h2>
+          <p class="card-text">The best-fit source image is always called out before launch so the result feels grounded and intentional.</p>
+        </article>
+
+        <article class="detail-card detail-card-interface" data-reveal>
+          <p class="card-meta">Output target</p>
+          <h2 class="card-title card-title-sm">{experience.data.outputType}</h2>
+          <p class="card-text">The workflow keeps output expectations visible up front instead of hiding them behind generic “get started” copy.</p>
+        </article>
+
+        <article class="detail-card detail-card-interface" data-reveal>
+          <p class="card-meta">Audience mode</p>
+          <h2 class="card-title card-title-sm">{experience.data.audienceMode.replace(/-/g, " ")}</h2>
+          <p class="card-text">This mode remains live today while the broader MagicLens studio continues expanding around it.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-intro" data-reveal>
+        <p class="section-eyebrow">Workflow rail</p>
+        <h2 class="section-title">How this workflow runs inside the studio.</h2>
+        <p class="section-lead">
+          The page now explains the workflow like a product surface with explicit routing, controls, and output framing.
+        </p>
+      </div>
+
+      <div class="timeline-grid">
+        {
+          experience.data.workflow.map((step, index) => (
+            <article class="timeline-card timeline-card-dark" data-reveal>
+              <span class="timeline-step">{index + 1}</span>
+              <h3 class="card-title card-title-sm">{step.title}</h3>
+              <p class="card-text">{step.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-intro" data-reveal>
+        <p class="section-eyebrow">Capability set</p>
+        <h2 class="section-title">The workflow is described in product terms, not just benefits language.</h2>
+        <p class="section-lead">
+          Capability tags give each workflow the feel of a module inside a creative platform instead of a generic one-page promotion.
+        </p>
+      </div>
+
+      <div class="feature-grid">
+        {experience.data.capabilities.map((capability) => (
+          <article class="feature-card feature-card-dark" data-reveal>
+            <p class="card-meta">Capability</p>
+            <h3 class="card-title card-title-sm">{capability}</h3>
+            <p class="card-text">Applied as part of the {experience.data.publicLabel} workflow inside the MagicLens studio shell.</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-intro" data-reveal>
+        <p class="section-eyebrow">Input guidance</p>
+        <h2 class="section-title">Treat setup guidance like workflow controls.</h2>
+        <p class="section-lead">
+          Input recommendations are framed as creator guidance cards so the setup feels like using a product, not reading FAQ copy.
+        </p>
+      </div>
+
+      <div class="detail-grid">
+        {experience.data.inputGuidance.map((tip) => (
+          <article class="detail-card detail-card-interface" data-reveal>
+            <p class="card-meta">{experience.data.inputType}</p>
+            <h3 class="card-title card-title-sm">Studio guidance</h3>
+            <p class="card-text">{tip}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {galleryItems.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <div class="section-intro" data-reveal>
+          <p class="section-eyebrow">Examples</p>
+          <h2 class="section-title">Workflow output, shown in a denser studio frame.</h2>
+          <p class="section-lead">
+            The current approved output media is displayed inside product-like canvases, with illustrative labeling kept explicit.
+          </p>
+        </div>
+
+        <div class="detail-grid">
+          {galleryItems.map((item) => <TransformShowcase item={item} experience={experience} />)}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="section">
+    <div class="container">
+      <div class="detail-grid">
+        <article class="detail-card detail-card-interface" data-reveal>
+          <p class="card-meta">Operational truth</p>
+          <h2 class="card-title">What remains true today</h2>
+          <ul class="check-list">
+            {experience.data.trustNotes.map((note) => <li>{note}</li>)}
+          </ul>
+        </article>
+
+        <article class="cta-panel cta-panel-studio" data-reveal>
+          <p class="eyebrow">Launch workflow</p>
+          <h2 class="section-title">Open it through the studio shell.</h2>
+          <p class="card-text">
+            The primary action now feels unified and product-led. The current dedicated creation domain sits behind the launch, not in
+            front of it.
+          </p>
+          <div class="button-row">
+            <a class="button button-primary" href={experience.data.ctaHref} target="_blank" rel="noopener noreferrer">
+              {experience.data.ctaLabel}
+            </a>
+            <a class="button button-secondary" href="/privacy/">Read privacy details</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-intro" data-reveal>
+        <p class="section-eyebrow">Related workflows</p>
+        <h2 class="section-title">Stay inside the same creative system.</h2>
+        <p class="section-lead">
+          Related workflow cards continue the studio language and keep navigation feeling like one product environment.
+        </p>
+      </div>
+
+      <div class="related-grid">
+        {relatedExperiences.map((entry) => <ExperienceCard experience={entry} />)}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

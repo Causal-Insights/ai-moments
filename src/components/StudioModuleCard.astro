@@ -1,0 +1,12 @@
+---
+const { module } = Astro.props;
+---
+
+<article class="module-card" data-reveal>
+  <p class="card-meta">{module.eyebrow}</p>
+  <h3 class="card-title">{module.title}</h3>
+  <p class="card-text">{module.description}</p>
+  <ul class="check-list module-list">
+    {module.bullets.map((bullet) => <li>{bullet}</li>)}
+  </ul>
+</article>

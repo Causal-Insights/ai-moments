@@ -1,0 +1,157 @@
+---
+import ExperienceCard from "../../components/ExperienceCard.astro";
+import StartingPointCard from "../../components/StartingPointCard.astro";
+import StudioModuleCard from "../../components/StudioModuleCard.astro";
+import StudioWorkspaceMock from "../../components/StudioWorkspaceMock.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getComingSoonExperiences, getLiveExperiences } from "../../lib/content.js";
+import { startingPoints, studioFlow, studioModules } from "../../config/site.js";
+
+const liveExperiences = await getLiveExperiences();
+const upcomingExperiences = await getComingSoonExperiences();
+const heroExperience = liveExperiences.find((entry) => entry.data.slug === "santa") ?? liveExperiences[0];
+---
+
+<BaseLayout
+  title="Studio"
+  description="Explore the MagicLens studio shell, its workflow modules, and the live guided modes currently available."
+  path="/studio/"
+>
+  <section class="section hero-home">
+    <div class="container hero-grid hero-grid-product">
+      <div class="hero-copy hero-copy-product" data-reveal>
+        <p class="eyebrow">Studio</p>
+        <h1 class="hero-title">A deeper product surface for AI-guided creative workflows.</h1>
+        <p class="hero-subtitle">
+          Studio is now the primary organizing idea of MagicLens. It frames the live workflows as modules inside a creative system
+          with starting points, control surfaces, examples, and a unified launch path.
+        </p>
+        <p class="hero-kicker">
+          No fake in-browser editor is being promised here. The studio feeling comes from stronger product framing, darker interface
+          language, and workflow mockups built around the real approved media.
+        </p>
+
+        <div class="button-row">
+          <a class="button button-primary" href="/experiences/">Start creating</a>
+          <a class="button button-secondary" href="/experiences/">See Workflows</a>
+        </div>
+      </div>
+
+      <div class="hero-mock-stage" data-reveal>
+        <StudioWorkspaceMock
+          title="MagicLens Studio"
+          label="Workspace concept"
+          media={heroExperience.data.heroMedia}
+          chips={["Gen Space", "Control Surface", "Style System", "Live workflow"]}
+          controls={["Input", "Look", "Output", "Route"]}
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-intro" data-reveal>
+        <p class="section-eyebrow">Studio modules</p>
+        <h2 class="section-title">Organize the site like a serious product platform.</h2>
+        <p class="section-lead">
+          These modules are the shared conceptual system behind the redesign and give MagicLens the same product weight across Home,
+          Workflows, Examples, and workflow detail pages.
+        </p>
+      </div>
+
+      <div class="module-grid">
+        {studioModules.map((module) => <StudioModuleCard module={module} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-intro" data-reveal>
+        <p class="section-eyebrow">Starting points</p>
+        <h2 class="section-title">The studio starts from a mode, not a brochure CTA.</h2>
+        <p class="section-lead">
+          The current live workflows still begin from an image, but the redesign makes the broader studio entry model visible now.
+        </p>
+      </div>
+
+      <div class="pathway-grid">
+        {startingPoints.map((item) => <StartingPointCard item={item} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-intro" data-reveal>
+        <p class="section-eyebrow">Control flow</p>
+        <h2 class="section-title">A product-like workflow from ingest to output.</h2>
+        <p class="section-lead">
+          This section replaces generic roadmap prose with an explicit studio flow that feels closer to software onboarding.
+        </p>
+      </div>
+
+      <div class="stage-grid stage-grid-compact">
+        {
+          studioFlow.map((item, index) => (
+            <article class="stage-step stage-step-dark" data-reveal>
+              <span class="stage-label">{index + 1}</span>
+              <h3 class="card-title card-title-sm">{item.step}</h3>
+              <p class="stage-text">{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-intro" data-reveal>
+        <p class="section-eyebrow">Live now</p>
+        <h2 class="section-title">Current workflows inside the studio shell.</h2>
+        <p class="section-lead">
+          These are the launchable workflows today. They are now framed as part of a shared product environment even though creation
+          still continues on dedicated domains after launch.
+        </p>
+      </div>
+
+      <div class="catalog-grid catalog-grid-featured">
+        {liveExperiences.map((experience) => <ExperienceCard experience={experience} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-intro" data-reveal>
+        <p class="section-eyebrow">Coming next</p>
+        <h2 class="section-title">Preview the broader studio map without overstating availability.</h2>
+        <p class="section-lead">
+          These modes keep the future direction visible while remaining clearly marked as studio previews rather than live product.
+        </p>
+      </div>
+
+      <div class="catalog-grid">
+        {upcomingExperiences.map((experience) => <ExperienceCard experience={experience} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="cta-panel cta-panel-studio" data-reveal>
+        <p class="eyebrow">Launch point</p>
+        <h2 class="section-title">Use the studio CTA first, then continue into the live workflow.</h2>
+        <p class="section-lead">
+          That keeps the experience feeling like one product even while the real live workflow handoff still happens behind the scenes.
+        </p>
+        <div class="button-row">
+          <a class="button button-primary" href="/experiences/">Browse all Workflows</a>
+          <a class="button button-secondary" href="/gallery/">View Examples</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

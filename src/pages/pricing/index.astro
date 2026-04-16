@@ -1,0 +1,50 @@
+---
+import PageHero from "../../components/PageHero.astro";
+import SectionIntro from "../../components/SectionIntro.astro";
+import { pricingTracks } from "../../config/site.js";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Pricing"
+  description="Understand how MagicLens separates live workflow access from broader studio plans that are still in preview."
+  path="/pricing/"
+>
+  <PageHero
+    eyebrow="Pricing"
+    title="A product-style access page, without pretending unsupported plans are live."
+    lead="Pricing now reads like part of the platform instead of a generic marketing page. It separates live workflow access from the broader studio and team layers that are still planned."
+    kicker="No numeric pricing is invented here. This page exists to communicate the product structure and set expectations honestly."
+    actions={[
+      { label: "Browse Workflows", href: "/experiences/", secondary: false },
+      { label: "Login status", href: "/sign-in/", secondary: true }
+    ]}
+  />
+
+  <section class="section">
+    <div class="container">
+      <SectionIntro
+        eyebrow="Access tracks"
+        title="Separate what people can use today from what is still planned."
+        lead="This stays intentionally structural: one live workflow-access layer now, broader studio and team access later."
+      />
+
+      <div class="pricing-grid">
+        {
+          pricingTracks.map((track) => (
+            <article class="pricing-card" data-reveal>
+              <div class="pricing-card-header">
+                <h3 class="card-title">{track.title}</h3>
+                <span class="availability-chip">{track.availability}</span>
+              </div>
+              <p class="card-text">{track.description}</p>
+              <ul class="check-list">
+                {track.bullets.map((bullet) => <li>{bullet}</li>)}
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>

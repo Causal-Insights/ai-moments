@@ -1,6 +1,8 @@
-README.md
-CNAME
 .git
+.astro
+node_modules
+dist
+README.md
 .gitignore
-Dockerfile
 .dockerignore
+Dockerfile

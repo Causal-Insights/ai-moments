@@ -1,0 +1,141 @@
+---
+import ExperienceCard from "../../components/ExperienceCard.astro";
+import StudioWorkspaceMock from "../../components/StudioWorkspaceMock.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getComingSoonExperiences, getLiveExperiences } from "../../lib/content.js";
+import { siteConfig } from "../../config/site.js";
+
+const liveExperiences = await getLiveExperiences();
+const upcomingExperiences = await getComingSoonExperiences();
+const heroExperience = liveExperiences[0];
+
+function toToken(value) {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+}
+
+const categories = ["all", ...new Set(liveExperiences.map((entry) => toToken(entry.data.category)))];
+const outputs = ["all", ...new Set(liveExperiences.map((entry) => toToken(entry.data.outputType)))];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "MagicLens Workflows",
+  url: `${siteConfig.siteUrl}/experiences/`,
+  description: "Browse the live and upcoming MagicLens workflows."
+};
+---
+
+<BaseLayout
+  title="Workflows"
+  description="Browse MagicLens workflows, compare the live guided modes, and preview the studio workflows that are coming next."
+  path="/experiences/"
+  jsonLd={jsonLd}
+>
+  <section class="section hero-home">
+    <div class="container hero-grid hero-grid-product">
+      <div class="hero-copy hero-copy-product" data-reveal>
+        <p class="eyebrow">Workflows</p>
+        <h1 class="hero-title">Guided modes inside the MagicLens studio.</h1>
+        <p class="hero-subtitle">
+          Workflows are the public-facing way to browse MagicLens today. Each one has a clear input model, studio-framed capability
+          tags, example outputs, and a unified launch path.
+        </p>
+        <p class="hero-kicker">
+          The live workflows are still powered by current dedicated creation domains, but the site now treats them as one coherent
+          studio system.
+        </p>
+
+        <div class="button-row">
+          <a class="button button-primary" href="/studio/">Open Studio</a>
+          <a class="button button-secondary" href="/gallery/">Browse Examples</a>
+        </div>
+      </div>
+
+      <div class="hero-mock-stage" data-reveal>
+        <StudioWorkspaceMock
+          title="Workflow Browser"
+          label="Live now"
+          media={heroExperience.data.heroMedia}
+          chips={[heroExperience.data.publicLabel, heroExperience.data.startingPoint, ...heroExperience.data.capabilities.slice(0, 2)]}
+          controls={["Input routing", "Workflow fit", "Output preview"]}
+          compact={true}
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" data-filter-root>
+      <div class="section-intro" data-reveal>
+        <p class="section-eyebrow">Live workflows</p>
+        <h2 class="section-title">Filter the live modes by category and output.</h2>
+        <p class="section-lead">
+          Each workflow card now carries starting-point and capability context so the catalog reads like product modules, not generic
+          marketing tiles.
+        </p>
+      </div>
+
+      <div class="filter-shell" data-reveal>
+        <div class="filter-group">
+          <p class="filter-label">Category</p>
+          <div class="filter-row">
+            {categories.map((category) => (
+              <button
+                class:list={["filter-button", { "is-active": category === "all" }]}
+                type="button"
+                data-filter-button
+                data-filter-name="category"
+                data-filter-value={category}
+                aria-pressed={category === "all" ? "true" : "false"}
+              >
+                {category === "all" ? "All live workflows" : category.replace(/-/g, " ")}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <p class="filter-label">Output</p>
+          <div class="filter-row">
+            {outputs.map((output) => (
+              <button
+                class:list={["filter-button", { "is-active": output === "all" }]}
+                type="button"
+                data-filter-button
+                data-filter-name="output"
+                data-filter-value={output}
+                aria-pressed={output === "all" ? "true" : "false"}
+              >
+                {output === "all" ? "All outputs" : output.replace(/-/g, " ")}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div class="catalog-grid catalog-grid-featured">
+        {liveExperiences.map((experience) => <ExperienceCard experience={experience} />)}
+      </div>
+
+      <p class="filter-empty" data-filter-empty hidden>
+        No live workflows match the current filter combination.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-intro" data-reveal>
+        <p class="section-eyebrow">Studio preview</p>
+        <h2 class="section-title">The coming catalog stays visible, but clearly labeled.</h2>
+        <p class="section-lead">
+          These workflow previews make the broader studio direction legible without pretending the future modules are already live.
+        </p>
+      </div>
+
+      <div class="catalog-grid">
+        {upcomingExperiences.map((experience) => <ExperienceCard experience={experience} />)}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

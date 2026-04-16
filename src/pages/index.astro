@@ -1,0 +1,190 @@
+---
+import ExperienceCollage from "../components/ExperienceCollage.astro";
+import StudioWorkspaceMock from "../components/StudioWorkspaceMock.astro";
+import { brandAssets, getExperienceTheme } from "../config/brand.js";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getExperiences } from "../lib/content.js";
+import { siteConfig, startingPoints, studioModules } from "../config/site.js";
+
+const experiences = await getExperiences();
+const liveExperiences = experiences.filter((entry) => entry.data.status === "live");
+const heroExperience = liveExperiences.find((entry) => entry.data.slug === "santa") ?? liveExperiences[0];
+const experienceBySlug = Object.fromEntries(experiences.map((entry) => [entry.data.slug, entry]));
+
+const collageItems = [
+  {
+    kind: "experience",
+    type: "video",
+    title: experienceBySlug["easter-bunny"]?.data.publicLabel ?? "Easter Bunny",
+    href: experienceBySlug["easter-bunny"]?.url ?? "/experiences/easter-bunny/",
+    src: experienceBySlug["easter-bunny"]?.data.heroMedia.src ?? "/collage_assets/easter_bunny_2.mp4",
+    poster: experienceBySlug["easter-bunny"]?.data.heroMedia.poster ?? "/images/easter-bunny-preview.jpg",
+    variant: "easter",
+    watermarkSrc: getExperienceTheme("easter-bunny").icon
+  },
+  {
+    kind: "experience",
+    type: "video",
+    title: experienceBySlug.santa?.data.publicLabel ?? "Santa",
+    href: experienceBySlug.santa?.url ?? "/experiences/santa/",
+    src: experienceBySlug.santa?.data.heroMedia.src ?? "/collage_assets/santa_caught_on_cam.mp4",
+    poster: experienceBySlug.santa?.data.heroMedia.poster ?? "/images/santa-video-preview.jpg",
+    variant: "santa",
+    watermarkSrc: getExperienceTheme("santa").icon
+  },
+  {
+    kind: "experience",
+    type: "video",
+    title: experienceBySlug["tooth-fairy"]?.data.publicLabel ?? "Tooth Fairy",
+    href: experienceBySlug["tooth-fairy"]?.url ?? "/experiences/tooth-fairy/",
+    src: experienceBySlug["tooth-fairy"]?.data.heroMedia.src ?? "/collage_assets/tooth-fairy-visit-10.mp4",
+    poster: experienceBySlug["tooth-fairy"]?.data.heroMedia.poster ?? "/images/tooth-fairy-preview.jpg",
+    variant: "tooth",
+    watermarkSrc: getExperienceTheme("tooth-fairy").icon
+  },
+  {
+    kind: "experience",
+    type: "video",
+    title: "Toys",
+    href: experienceBySlug["toy-animator"]?.url ?? undefined,
+    src: experienceBySlug["toy-animator"]?.data.heroMedia.src ?? "/collage_assets/toy_video_1.mp4",
+    poster: experienceBySlug["toy-animator"]?.data.heroMedia.poster ?? "/collage_assets/04-selected-video-source.png",
+    variant: "toy",
+    watermarkSrc: getExperienceTheme("toy-animator").icon
+  },
+  {
+    kind: "experience",
+    type: "video",
+    title: "Moon",
+    src: "/collage_assets/moon_1.mp4",
+    watermarkSrc: brandAssets.symbol
+  }
+];
+
+const companyNotes = [
+  {
+    title: "Live now",
+    text: "Santa, Easter Bunny, and Tooth Fairy are the current live guided experiences."
+  },
+  {
+    title: "Product direction",
+    text: "MagicLens is being shaped into one AI creative studio instead of a collection of microsites."
+  },
+  {
+    title: "Operational truth",
+    text: "The live flows still continue on dedicated creation domains after launch."
+  }
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${siteConfig.siteUrl}/#organization`,
+      name: siteConfig.brandName,
+      url: siteConfig.siteUrl,
+      description: siteConfig.description
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteConfig.siteUrl}/#website`,
+      name: siteConfig.brandName,
+      url: siteConfig.siteUrl,
+      description: siteConfig.description,
+      publisher: { "@id": `${siteConfig.siteUrl}/#organization` }
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="MagicLens"
+  description="MagicLens turns real rooms and family rituals into premium AI video memories."
+  jsonLd={jsonLd}
+>
+  <section id="experiences" class="section hero-home minimal-home">
+    <div class="container">
+      <div class="experience-hero-copy" data-reveal>
+        <p class="eyebrow home-hero-eyebrow">Premium AI video memories</p>
+        <img class="home-hero-lockup" src={brandAssets.lockup} alt="" loading="eager" decoding="async" />
+        <h1 class="experience-hero-headline">Something extraordinary visited last night.</h1>
+        <p class="experience-hero-subtitle">
+          MagicLens turns real rooms, bedtime milestones, and family rituals into polished keepsake videos that still feel grounded
+          in home.
+        </p>
+      </div>
+    </div>
+
+    <div class="hero-collage-bleed">
+      <ExperienceCollage items={collageItems} />
+    </div>
+  </section>
+
+  <section id="studio" class="section">
+    <div class="container">
+      <div class="section-head-minimal" data-reveal>
+        <p class="section-label">Studio</p>
+        <a class="section-link-minimal" href="/studio/">Open</a>
+      </div>
+
+      <div class="studio-home-grid">
+        <div data-reveal>
+          <StudioWorkspaceMock
+            title="MagicLens Studio"
+            label="Workspace preview"
+            media={heroExperience.data.heroMedia}
+            chips={["From an Image", heroExperience.data.publicLabel, ...heroExperience.data.capabilities.slice(0, 2)]}
+            controls={["Input", "Route", "Look", "Output"]}
+          />
+        </div>
+
+        <div class="studio-home-panels">
+          {startingPoints.slice(0, 2).map((item) => (
+            <article class="starting-point-card" data-reveal>
+              <div class="starting-point-topline">
+                <p class="card-meta">Starting point</p>
+                <span class:list={["status-badge", item.status.toLowerCase().includes("live") ? "status-live" : "status-soon"]}>
+                  {item.status}
+                </span>
+              </div>
+              <h2 class="card-title">{item.title}</h2>
+              <p class="card-text">{item.description}</p>
+            </article>
+          ))}
+
+          {studioModules.slice(0, 2).map((module) => (
+            <article class="module-card" data-reveal>
+              <p class="card-meta">{module.eyebrow}</p>
+              <h2 class="card-title">{module.title}</h2>
+              <p class="card-text">{module.description}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="company" class="section">
+    <div class="container">
+      <div class="section-head-minimal" data-reveal>
+        <p class="section-label">Company</p>
+        <a class="section-link-minimal" href="/about/">Open</a>
+      </div>
+
+      <div class="company-grid">
+        <article class="company-panel" data-reveal>
+          <p class="card-meta">MagicLens</p>
+          <h2 class="section-title company-title">One product surface for guided magical creation.</h2>
+        </article>
+
+        {companyNotes.map((item) => (
+          <article class="detail-card detail-card-interface" data-reveal>
+            <p class="card-meta">{item.title}</p>
+            <p class="card-text">{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

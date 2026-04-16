@@ -1,0 +1,41 @@
+---
+import { brandAssets } from "../config/brand.js";
+import { siteConfig } from "../config/site.js";
+
+const { pathname = "/" } = Astro.props;
+
+function isActive(href, currentPath) {
+  if (href === "/") return currentPath === "/";
+  return currentPath.startsWith(href);
+}
+---
+
+<header class="site-header" role="banner">
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label={`${siteConfig.brandName} home`}>
+      <img class="brand-lockup-image" src={brandAssets.lockup} alt="" loading="eager" decoding="async" />
+      <span class="brand-copy">
+        <span class="sr-only">{siteConfig.brandName}</span>
+        <span class="brand-tag">{siteConfig.productTagline}</span>
+      </span>
+    </a>
+
+    <nav class="site-nav" aria-label="Primary">
+      {
+        siteConfig.primaryNav.map((item) => (
+          <a
+            class:list={["nav-link", { "nav-link-active": isActive(item.href, pathname) }]}
+            href={item.href}
+            aria-current={isActive(item.href, pathname) ? "page" : undefined}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <a class="header-cta" href="/studio/">
+      Open Studio
+    </a>
+  </div>
+</header>

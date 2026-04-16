@@ -1,0 +1,20 @@
+{
+  "name": "magic-lens-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "predev": "node scripts/reset-astro-cache.mjs",
+    "prebuild": "node scripts/reset-astro-cache.mjs",
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "test:browser": "playwright test"
+  },
+  "dependencies": {
+    "astro": "^5.13.4"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.59.1"
+  }
+}
